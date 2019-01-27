@@ -1,0 +1,21 @@
+{% extends 'photos/base.html' %}
+
+
+{% block content %}
+
+    <div class="jumbotron col-md-12">
+        <h1>{{ contest.title }}</h1>
+    </div>
+
+    <div class="col-md-8">
+        <ul class="list-group">
+            {% for photo in contest.photo_set.all %}
+                <li class="list-group-item">{{ photo.title }} -- {{ photo.votes }} vote{{ photo.votes|pluralize }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="col-md-4">
+        <a href="{% url 'photos:detail' contest.id %}">Vote again?</a>
+    </div>
+{% endblock %}
