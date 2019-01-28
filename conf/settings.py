@@ -42,7 +42,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'localhost',
-    'taverns.herokuapp.com/'
+    'taverns.herokuapp.com/',
 ]
 
 

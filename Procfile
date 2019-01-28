@@ -1,1 +1,1 @@
-web: gunicorn conf.wisgi
+web: gunicorn conf.wsgi
