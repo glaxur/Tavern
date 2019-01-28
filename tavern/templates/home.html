@@ -5,9 +5,9 @@
         <ul>
             <li class="list-group-item"><a href="{% url 'tavern:detail' lunch.id %}">{{ lunch.nickname }}</a></li>
         </ul>
-{#        <a>{{ lunch.nickname }}</a><br/>#}
-{#        <p>{{ lunch.user }}</p><br/>#}
-{#        <p>{{ lunch.date }}<p><br>#}
-{#        <br/>#}
+
+        <p>{{ lunch.user }}</p>
+        <p>{{ lunch.date }}</p>
+
     {% endfor %}
 {% endblock %}

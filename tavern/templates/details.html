@@ -3,26 +3,25 @@
 
 {% block content %}
 
-    <h1>{{ lunch.id }}</h1>
-
     {# Our form action needs to point to our vote route, we use the url template tag again #}
-{#   <form action="{% url 'tavern:vote' lunch.id %}" method="post" class="row">#}
-{#       {% csrf_token %} {# The CSRF token is a security measure #}
-{##}
-{#       {% for lunch in lunch.location_set.all %}#}
-{#            <div class="col-md-2">#}
-{#                <div class="card">#}
-{#                  <label for="Location{{ forloop.counter }}">#}
-{#                    <h2>{{ location.suggested_locations }}#}
-{##}
-{#                       Select: <input type="radio" name="location" id="location{{ forloop.counter }}" value="{{ location.id }}" />#}
-{#                </div>#}
-{##}
-{#            </div>#}
-{##}
-{#       {% endfor %}#}
-{#       <input type="submit" class="btn btn-primary" value="Vote" />#}
-{#    </form>#}
+   <form action="{% url 'tavern:vote' lunch.id %}" method="post" class="row">
+       {% csrf_token %}
+
+       {% for lunch in lunch.location_set.all %}
+            <div class="col-md-2">
+                <div class="card">
+                  <label for="Location{{ forloop.counter }}">
+                      <h2>{{ location.suggested_locations }}</h2>
+                  </label>
+
+                       Select: <input type="radio" name="location" id="location{{ forloop.counter }}" value="{{ location.id }}" />
+                </div>
+
+            </div>
+
+       {% endfor %}
+       <input type="submit" class="btn btn-primary" value="Vote" />
+    </form>
 
 
 {% endblock %}
