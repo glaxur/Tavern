@@ -15,7 +15,7 @@ class Home(TemplateView):
         available_lunches = Lunch.objects.all()
 
         context = {
-            "lunches" : available_lunches
+            "lunches": available_lunches
         }
 
         return context
@@ -28,18 +28,18 @@ class Details(TemplateView):
         available_locations = Location.objects.all()
 
         # The contest primary key is included on the url: locahost:8000/5/
-                # We use value capturing in our urls.py to get the # 5 and save it to pk
-                # The pk variable is in the dictionary self.kwargs, and we can use .get() on
-                # the self.kwargs dict.
+        # We use value capturing in our urls.py to get the # 5 and save it to pk
+        # The pk variable is in the dictionary self.kwargs, and we can use .get() on
+        # the self.kwargs dict.
         lunch_pk = self.kwargs.get('pk')
 
-                # Now that we have the primary key for the contest, use the ORM to get the
-                # object from the database
-        lunch= Lunch.objects.get(pk=lunch_pk)
+        # Now that we have the primary key for the contest, use the ORM to get the
+        # object from the database
+        lunch = Lunch.objects.get(pk=lunch_pk)
 
         context = {
-                "details" : available_locations,
-                "lunch" : lunch
+                "details": available_locations,
+                "lunch": lunch
         }
 
         return context
@@ -57,11 +57,12 @@ class Results(TemplateView):
                 'lunch': lunch
         }
 
+        return context
+
 
 # This view will not be a template view since we won't actually show a screen.
 # Once a user submits to this screen we will redirect.
 class Vote(View):
-
 
     # We are going to receive a POST request with this view, so we're going to create a method called post.
     def post(self, request, **kwargs):
@@ -76,7 +77,7 @@ class Vote(View):
         # They selected one of the radio buttons: <input name="photo" value="2" .../>
         # When they submitted the form, the name of the input got sent to the server with the value in the input.
         # We can use the input name get the value from the POST dictionary.
-        location_voted_for_id = self.request.POST.get('location ')
+        location_voted_for_id = self.request.POST.get('location')
 
         # Now we want to take our contest and lookup the photo object that the user selected
         selected_location = lunch.location_set.get(pk=location_voted_for_id)
@@ -85,7 +86,7 @@ class Vote(View):
         selected_location.save()
 
         # Now get the URL for our results screen using the route name from urls.py
-        results_url = reverse('location:results', args=(lunch.pk,))
+        results_url = reverse('tavern:results', args=(lunch.pk,))
 
         # Always return an HttpResponseRedirect after successfully dealing
         # with POST data. This prevents data from being posted twice if a

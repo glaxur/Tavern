@@ -7,8 +7,8 @@
    <form action="{% url 'tavern:vote' lunch.id %}" method="post" class="row">
        {% csrf_token %}
 
-       {% for lunch in lunch.location_set.all %}
-            <div class="col-md-2">
+       {% for location in lunch.location_set.all %}
+            <div class="col-md-3">
                 <div class="card">
                   <label for="Location{{ forloop.counter }}">
                       <h2>{{ location.suggested_locations }}</h2>
